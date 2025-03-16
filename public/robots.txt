@@ -1,0 +1,10 @@
+# https://emergenciabahia.xyz/robots.txt
+# Permitir que todos los robots de búsqueda indexen el sitio
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://emergenciabahia.xyz/sitemap.xml
+
+# Optimizar la tasa de rastreo
+Crawl-delay: 1 
