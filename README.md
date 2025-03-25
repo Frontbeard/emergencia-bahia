@@ -1,6 +1,6 @@
 # ⚠️ Emergencia Bahía
 
-![Emergencia Bahía](https://i.imgur.com/91brBIx.png)
+![Preview del sitio web](https://i.imgur.com/kJJO4Y8.png)
 
 **Plataforma web para centralizar información sobre los centros de donación en la Provincia de Buenos Aires.**
 
