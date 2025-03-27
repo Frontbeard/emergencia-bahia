@@ -1,14 +1,12 @@
-import { DonationCenterCard } from '../components/donation-center-card'
-import { Footer } from '../components/footer'
-import { Header } from '../components/header'
-import { FilterControls } from '../components/filter-controls'
-import { MissionStatement } from '../components/mission-statement'
-import { CtaBanner } from '../components/cta-banner'
-import { useState, useEffect } from 'react'
-import { FadeIn } from '../components/ui/motion'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Button } from '../components/ui/button'
+import { useState, useEffect } from "react"
 import { Navbar } from "../components/navbar"
+import { Footer } from "../components/footer"
+import { DonationCenterCard } from "../components/donation-center-card"
+import { FilterControls } from "../components/filter-controls"
+import { FadeIn } from "../components/ui/motion"
+import { motion, AnimatePresence } from "framer-motion"
+import { Button } from "../components/ui/button"
+import { Heart, MapPin } from "lucide-react"
 
 // Datos de centros de donación
 const donationCenters = [
@@ -611,12 +609,12 @@ const donationCenters = [
 // Tipos para las opciones de ordenamiento
 type SortOrder = "default" | "asc" | "desc"
 
-export default function Home() {
+export default function CentrosPage() {
   const [selectedLocation, setSelectedLocation] = useState<string>("Todas")
   const [sortOrder, setSortOrder] = useState<SortOrder>("default")
   const [filteredCenters, setFilteredCenters] = useState(donationCenters)
   const [isFiltering, setIsFiltering] = useState(false)
-  const [displayCount, setDisplayCount] = useState<number>(9)
+  const [displayCount, setDisplayCount] = useState<number>(12)
 
   // Obtener lista única de localidades para el filtro
   const locationsList = [...Array.from(new Set(donationCenters.map((center) => center.localidad)))].sort()
@@ -650,19 +648,66 @@ export default function Home() {
 
   // Efecto para resetear el contador de centros mostrados cuando cambian los filtros
   useEffect(() => {
-    setDisplayCount(9)
+    setDisplayCount(12)
   }, [selectedLocation, sortOrder])
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
       <Navbar />
-      <Header />
-      <MissionStatement />
+
+      <div className="pt-28 pb-20 bg-gradient-to-b from-blue-500 to-blue-600 text-white relative overflow-hidden">
+        <div className="absolute -top-20 -left-20 w-64 h-64 rounded-full bg-blue-400/30 blur-3xl"></div>
+        <div className="absolute top-10 right-10 w-32 h-32 rounded-full bg-blue-300/20 blur-2xl"></div>
+        <div className="absolute bottom-0 left-1/4 w-40 h-40 rounded-full bg-blue-400/20 blur-2xl"></div>
+
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <FadeIn direction="down" duration={0.6}>
+            <h1 className="text-3xl md:text-4xl font-bold mb-2 tracking-tight">Centros de Donación</h1>
+          </FadeIn>
+          <FadeIn delay={0.1} duration={0.6}>
+            <p className="text-lg max-w-3xl mx-auto opacity-90 font-light mb-6">
+              Encuentra el centro de donación más cercano para ayudar a los damnificados por las inundaciones.
+            </p>
+          </FadeIn>
+
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-8">
+            <FadeIn delay={0.15} duration={0.6} className="flex items-center gap-2">
+              <div className="bg-white/20 backdrop-blur-sm p-2 rounded-full">
+                <Heart className="h-6 w-6 text-white" />
+              </div>
+              <span className="text-lg font-medium">Más de {donationCenters.length} centros disponibles</span>
+            </FadeIn>
+
+            <FadeIn delay={0.2} duration={0.6} className="flex items-center gap-2">
+              <div className="bg-white/20 backdrop-blur-sm p-2 rounded-full">
+                <MapPin className="h-6 w-6 text-white" />
+              </div>
+              <span className="text-lg font-medium">En {locationsList.length} localidades diferentes</span>
+            </FadeIn>
+          </div>
+
+          <FadeIn delay={0.3} duration={0.6}>
+            <h2 className="text-2xl font-bold mb-4">¿Qué se necesita con urgencia?</h2>
+          </FadeIn>
+
+          <FadeIn delay={0.35} duration={0.6} className="mt-4">
+            <div className="max-w-2xl mx-auto backdrop-blur-lg bg-white/10 rounded-3xl p-5 text-left transform transition-all duration-500 hover:scale-[1.02] hover:shadow-lg border border-white/20">
+              <ul className="list-disc list-inside space-y-1 opacity-90">
+                <li className="transition-all duration-300 hover:translate-x-1">Agua potable</li>
+                <li className="transition-all duration-300 hover:translate-x-1">Alimentos no perecederos</li>
+                <li className="transition-all duration-300 hover:translate-x-1">Elementos de higiene personal</li>
+                <li className="transition-all duration-300 hover:translate-x-1">Artículos de limpieza</li>
+                <li className="transition-all duration-300 hover:translate-x-1">Ropa y calzado</li>
+                <li className="transition-all duration-300 hover:translate-x-1">Frazadas y colchones</li>
+              </ul>
+            </div>
+          </FadeIn>
+        </div>
+      </div>
+
       <main className="flex-1 container mx-auto px-4 py-8">
         <FadeIn delay={0.2} duration={0.7}>
           <section className="mb-10">
-            <h2 className="text-2xl font-bold text-center mb-8 text-blue-600">Centros de donación</h2>
-
             <FilterControls
               locations={locations}
               selectedLocation={selectedLocation}
@@ -719,7 +764,7 @@ export default function Home() {
                         transition={{ duration: 0.5, delay: 0.2 }}
                       >
                         <Button
-                          onClick={() => setDisplayCount((prev) => prev + 9)}
+                          onClick={() => setDisplayCount((prev) => prev + 12)}
                           variant="ios"
                           size="lg"
                           className="font-medium"
@@ -751,7 +796,7 @@ export default function Home() {
           </section>
         </FadeIn>
       </main>
-      <CtaBanner />
+
       <Footer />
     </div>
   )

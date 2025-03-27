@@ -69,4 +69,3 @@ export function DonationCenterCard({ center }: DonationCenterCardProps) {
     </Card>
   )
 }
-

@@ -2,7 +2,7 @@ import { FadeIn } from "./ui/motion"
 
 export function Header() {
   return (
-    <header className="relative bg-gradient-to-b from-blue-500 to-blue-600 text-white py-12 overflow-hidden">
+    <header className="relative bg-gradient-to-b from-blue-500 to-blue-600 text-white pt-28 pb-16 overflow-hidden">
       {/* Círculos de fondo estilo iOS */}
       <div className="absolute -top-20 -left-20 w-64 h-64 rounded-full bg-blue-400/30 blur-3xl"></div>
       <div className="absolute top-10 right-10 w-32 h-32 rounded-full bg-blue-300/20 blur-2xl"></div>
@@ -41,4 +41,3 @@ export function Header() {
     </header>
   )
 }
-
